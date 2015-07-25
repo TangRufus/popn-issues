@@ -34,6 +34,12 @@ gem 'devise', '~> 3.5.0'
 gem 'devise-async', '~> 0.10.1'
 gem 'pundit', '~> 1.0.0'
 
+# Models
+gem 'auto_strip_attributes', '~> 2.0.6'
+
+# Views
+gem 'bootstrap-sass', '~> 3.3.5.1'
+
 # Forms
 gem 'simple_form', '~> 3.1.0'
 gem 'actionform', git: 'https://github.com/rails/actionform.git', require: 'action_form'
@@ -46,6 +52,7 @@ group :development, :test do
   gem 'foreman', '~> 0.78.0'
   gem 'brakeman', '~> 3.0.2', require: false
   gem 'dawnscanner', '~> 1.3.1', require: false
+  gem 'rails_layout', '~> 1.0.26', require: false
   gem 'rubocop', '~> 0.32.0', require: false
   gem 'quiet_assets', '~> 1.1.0'
 end
