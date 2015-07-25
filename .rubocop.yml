@@ -1,0 +1,14 @@
+AllCops:
+  RunRailsCops: true
+  Exclude:
+    - 'test/**/*'
+    - 'config/routes.rb'
+    - 'config/unicorn.rb'
+    - 'db/schema.rb'
+    - 'db/migrate/2015*.rb'
+
+Metrics/LineLength:
+  Max: 100
+
+Style/Documentation:
+  Enabled: false
