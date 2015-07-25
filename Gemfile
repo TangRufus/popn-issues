@@ -14,7 +14,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-rails-cdn', '~> 1.0.3'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -39,6 +41,7 @@ gem 'auto_strip_attributes', '~> 2.0.6'
 
 # Views
 gem 'bootstrap-sass', '~> 3.3.5.1'
+gem 'modernizr-rails', '~> 2.7.1'
 
 # Forms
 gem 'simple_form', '~> 3.1.0'
@@ -52,7 +55,6 @@ group :development, :test do
   gem 'foreman', '~> 0.78.0'
   gem 'brakeman', '~> 3.0.2', require: false
   gem 'dawnscanner', '~> 1.3.1', require: false
-  gem 'rails_layout', '~> 1.0.26', require: false
   gem 'rubocop', '~> 0.32.0', require: false
   gem 'quiet_assets', '~> 1.1.0'
 end
