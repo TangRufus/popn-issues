@@ -49,3 +49,5 @@ group :development, :test do
   gem 'rubocop', '~> 0.32.0', require: false
   gem 'quiet_assets', '~> 1.1.0'
 end
+
+ruby '2.2.2'
