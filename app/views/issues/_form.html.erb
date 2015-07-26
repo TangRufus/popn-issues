@@ -1,0 +1,13 @@
+<%= simple_form_for @issue_form do |f| %>
+
+  <%= f.input :title, required: true, placeholder: '總有出頭天', autofocus: true %>
+
+  <%= f.simple_fields_for :comments do |c| %>
+    <%= c.input :body, required:true %>
+    <% end %>
+
+    <div class="form-actions">
+      <%= f.button :button, class: 'btn btn-lg btn-primary', data: {disable_with: "<i class='fa fa-circle-o-notch fa-spin'></i> loading..."} %>
+    </div>
+
+    <% end %>

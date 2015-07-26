@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
   # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
+  has_many :issues
+  has_many :comments
+
   auto_strip_attributes :username, delete_whitespaces: true
 
   validates :username, format: { with: /\A[a-z0-9]+\z/, message: 'only lowercase English characters and digits allowed' }

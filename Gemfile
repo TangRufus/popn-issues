@@ -19,6 +19,7 @@ gem 'jquery-rails-cdn', '~> 1.0.3'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
+gem 'jquery-turbolinks', '~> 2.1.0'
 
 # Use Unicorn as the app server
 gem 'unicorn', '~> 4.9.0'
@@ -34,7 +35,6 @@ gem 'sinatra', '~> 1.4.6', require: nil
 # Authentications
 gem 'devise', '~> 3.5.0'
 gem 'devise-async', '~> 0.10.1'
-gem 'pundit', '~> 1.0.0'
 
 # Models
 gem 'auto_strip_attributes', '~> 2.0.6'
@@ -42,6 +42,7 @@ gem 'auto_strip_attributes', '~> 2.0.6'
 # Views
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'modernizr-rails', '~> 2.7.1'
+gem 'gretel', '~> 3.0.8'
 
 # Forms
 gem 'simple_form', '~> 3.1.0'

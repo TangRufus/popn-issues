@@ -15,13 +15,15 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': true %>
 
   <%= javascript_include_tag :modernizr %>
+
+  <%= csrf_meta_tags %>
 </head>
 <body>
   <!-- Login Container -->
   <div id="login-container">
     <!-- Login Header -->
     <h1 class="h2 text-light text-center push-top-bottom animation-slideDown">
-      <i class="fa fa-bug"></i> Popn Issues
+      <%= link_to '<i class="fa fa-bug"></i> <strong>Popn Issues</strong>'.html_safe, root_path %>
     </h1>
     <!-- END Login Header -->
 
@@ -44,7 +46,10 @@
     <footer class="text-muted text-center animation-pullUp">
       <%= render "devise/shared/links" %>
       <br />
-      <small><span id="year-copy"></span> &copy; <a href="mailto:tangrufus@gmail.com" target="_blank">Tang Rufus</a></small>
+      <br />
+      <small>Crafted with <i class="fa fa-heart text-danger"></i> by <a href="mailto:tangrufus@gmail.com" target="_blank">Tang Rufus</a></small>
+      <br>
+      <small><span id="year-copy"></span> &copy; <a href="https://www.pinot.hk" target="_blank">Pinot</a></small>
     </footer>
     <!-- END Footer -->
   </div>

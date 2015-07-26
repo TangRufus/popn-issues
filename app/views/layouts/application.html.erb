@@ -15,11 +15,47 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': true %>
 
   <%= javascript_include_tag :modernizr %>
+
+  <%= csrf_meta_tags %>
 </head>
 <body>
 
-      <%= yield %>
+  <body>
+    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
 
+      <%= render 'layouts/sidebar' %>
 
-</body>
-</html>
+      <!-- Main Container -->
+      <div id="main-container">
+
+        <%= render 'layouts/header' %>
+
+        <!-- Page content -->
+        <div id="page-content">
+
+          <% if content_for?(:header_title) %>
+          <!-- Page Header -->
+          <div class="content-header">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="header-section">
+                  <h1><%= yield(:header_title) %></h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Page Header -->
+          <% end %>
+
+          <%= render 'layouts/messages' %>
+          <%= yield %>
+
+        </div>
+        <!-- END Page Content -->
+      </div>
+      <!-- END Main Container -->
+    </div>
+    <!-- END Page Container -->
+  </div>
+  <!-- END Page Wrapper -->
+  </html>

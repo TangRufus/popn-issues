@@ -26,9 +26,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'home/index'
 
+  get 'comments/new'
+
+  resources :comments
   devise_for :users
+  resources :issues
 
   authenticated :user do
     mount Sidekiq::Web => '/sidekiq'
