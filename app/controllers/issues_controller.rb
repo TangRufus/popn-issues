@@ -1,10 +1,20 @@
 class IssuesController < ApplicationController
   before_action :create_new_form, only: [:new, :create]
+  before_action :set_counts
 
   def index
-    @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
+    case params[:scope]
+    when 'urgent'
+      @issues = Issue.urgent.includes(comments: :user).order(updated_at: :desc)
+    when 'open'
+      @issues = Issue.open.includes(comments: :user).order(updated_at: :desc)
+    when 'closed'
+      @issues = Issue.closed.includes(comments: :user).order(updated_at: :desc)
+    else
+      @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
+    end
   end
-
+  
   def new
   end
 
@@ -37,5 +47,12 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:title, comments_attributes: [:body])
+  end
+
+  def set_counts
+    @all_count = Issue.all.size
+    @urgent_count = Issue.urgent.size
+    @open_count = Issue.open.size
+    @closed_count = Issue.closed.size
   end
 end

@@ -18,3 +18,4 @@
 //= require bootstrap-sprockets
 //= require appui/plugins
 //= require appui/app
+//= require issues
