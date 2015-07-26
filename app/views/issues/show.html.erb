@@ -10,7 +10,7 @@
   </div>
   <div class="col-md-8 col-lg-9">
     <!-- Issue Block -->
-    <div class="block">
+    <div class="block ">
       <!-- Issue Title -->
       <div class="block-title clearfix">
         <h2>Issue #<%= @issue.id %></h2>
@@ -19,11 +19,36 @@
 
       <!-- Issue Single -->
       <div id="issues-single">
-        <h2><%= @issue.title %></h2>
-        <div class="alert alert-success animation-fadeInQuick">Current Status: <strong><%= @issue.status.upcase %></strong></div>
-        <a href="javascript:void(0)" class="btn btn-xs btn-default pull-right"><i class="fa fa-check"></i> Flag as Closed</a>
-        <a href="javascript:void(0)" class="btn btn-xs btn-danger"><i class="fa fa-flag"></i> Flag as Urgent</a>
-        <a href="javascript:void(0)" class="btn btn-xs btn-warning"><i class="fa fa-flag"></i> Flag as Invalid</a>
+
+        <div class="btn-group pull-right">
+          <a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-<%= status_color_class(@issue.status) %> dropdown-toggle" aria-expanded="false">Status: <%= @issue.status.titleize %> <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li>
+              <a href="javascript:void(0)">
+                <i class="fa fa-flag pull-right"></i>
+                Urgent
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <i class="fa fa-refresh pull-right"></i>
+                Open
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)">
+                <i class="fa fa-check pull-right"></i>
+                Closed
+              </a>
+            </li>
+          </ul>
+          </div>
+
+          <h2><%= @issue.title %></h2>
+          <h4>issue #<%= @issue.id %></h4>
+
+
+
         <hr>
         <ul class="media-list media-feed push">
           <!-- Comments -->
