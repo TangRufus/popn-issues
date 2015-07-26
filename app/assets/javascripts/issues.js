@@ -8,6 +8,10 @@ function getUrlVar(key){
 }
 
 $(function () {
+
+  if (! $("body").hasClass("issues index"))
+        return;
+
   $scope = getUrlVar("scope") || "all";
   $selector = "li#" +  $scope + "-issues";
   $( $selector ).addClass( "active" );
