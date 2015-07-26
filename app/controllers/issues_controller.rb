@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :create_new_form, only: [:new, :create]
-  before_action :set_counts
+  before_action :set_counts, only: [:index, :new, :show]
 
   def index
     case params[:scope]
@@ -14,7 +14,7 @@ class IssuesController < ApplicationController
       @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
     end
   end
-  
+
   def new
   end
 
@@ -38,6 +38,16 @@ class IssuesController < ApplicationController
     @issue = Issue.all.includes(comments: :user).where(id: params[:id]).first
   end
 
+  def change_status
+    @issue = Issue.find(params[:id])
+    if @issue.update(status: issue_status_params)
+      flash[:success] = 'Issue updated'
+    else
+      flash[:error] = @issue.errors.full_messages.uniq.join('. ')
+    end
+    redirect_to @issue
+  end
+
   private
 
   def create_new_form
@@ -47,6 +57,10 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:title, comments_attributes: [:body])
+  end
+
+  def issue_status_params
+    params.require(:status)
   end
 
   def set_counts

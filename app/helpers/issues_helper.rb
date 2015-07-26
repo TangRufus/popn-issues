@@ -5,7 +5,7 @@ module IssuesHelper
 
   def status_color_class(status)
     case status.downcase
-    when 'uegent'
+    when 'urgent'
       key = 'danger'
     when 'closed'
       key = 'default'
