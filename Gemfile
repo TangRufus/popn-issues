@@ -42,7 +42,7 @@ gem 'auto_strip_attributes', '~> 2.0.6'
 # Views
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'modernizr-rails', '~> 2.7.1'
-gem 'gretel', '~> 3.0.8'
+gem 'local_time', '~> 1.0.2'
 
 # Forms
 gem 'simple_form', '~> 3.1.0'

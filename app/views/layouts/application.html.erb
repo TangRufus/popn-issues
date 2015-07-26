@@ -20,42 +20,40 @@
 </head>
 <body>
 
-  <body>
-    <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+  <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
 
-      <%= render 'layouts/sidebar' %>
+    <%= render 'layouts/sidebar' %>
 
-      <!-- Main Container -->
-      <div id="main-container">
+    <!-- Main Container -->
+    <div id="main-container">
 
-        <%= render 'layouts/header' %>
+      <%= render 'layouts/header' %>
 
-        <!-- Page content -->
-        <div id="page-content">
+      <!-- Page content -->
+      <div id="page-content">
 
-          <% if content_for?(:header_title) %>
-          <!-- Page Header -->
-          <div class="content-header">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="header-section">
-                  <h1><%= yield(:header_title) %></h1>
-                </div>
+        <% if content_for?(:header_title) %>
+        <!-- Page Header -->
+        <div class="content-header">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="header-section">
+                <h1><%= yield(:header_title) %></h1>
               </div>
             </div>
           </div>
-          <!-- END Page Header -->
-          <% end %>
-
-          <%= render 'layouts/messages' %>
-          <%= yield %>
-
         </div>
-        <!-- END Page Content -->
+        <!-- END Page Header -->
+        <% end %>
+
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+
       </div>
-      <!-- END Main Container -->
+      <!-- END Page Content -->
     </div>
-    <!-- END Page Container -->
+    <!-- END Main Container -->
   </div>
-  <!-- END Page Wrapper -->
-  </html>
+  <!-- END Page Container -->
+</body>
+</html>

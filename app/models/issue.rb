@@ -17,13 +17,23 @@
 #
 
 class Issue < ActiveRecord::Base
-  enum status: [:open, :closed]
+  enum status: [:open, :closed, :urgent]
 
-  belongs_to :user
+  belongs_to :user, touch: true
   has_many :comments, dependent: :destroy
+
+  auto_strip_attributes :title
 
   validates :title, presence: true, uniqueness: true
   validates :status, presence: true, inclusion: { in: statuses }, allow_blank: true
   validates :user, presence: true
   validates_associated :user
+
+  def last_commenter
+    comments.last.user.username
+  end
+
+  def last_commented_at
+    comments.last.created_at
+  end
 end

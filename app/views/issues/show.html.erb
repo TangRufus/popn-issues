@@ -1,3 +1,54 @@
-<%= content_for :header_title, "Issues \ #{@issue.title}" %>
+<%= content_for :header_title, "#{@issue.title} ##{@issue.id}" %>
 
-<h1>hi<h1>
+
+<!-- Issue Content -->
+<div class="row">
+  <div class="col-md-4 col-lg-3">
+
+    <%= render 'issues/menu' %>
+
+  </div>
+  <div class="col-md-8 col-lg-9">
+    <!-- Issue Block -->
+    <div class="block">
+      <!-- Issue Title -->
+      <div class="block-title clearfix">
+        <h2>Issue #<%= @issue.id %></h2>
+      </div>
+      <!-- END Issue Title -->
+
+      <!-- Issue Single -->
+      <div id="issues-single">
+        <h2><%= @issue.title %></h2>
+        <div class="alert alert-success animation-fadeInQuick">Current Status: <strong><%= @issue.status.upcase %></strong></div>
+        <a href="javascript:void(0)" class="btn btn-xs btn-default pull-right"><i class="fa fa-check"></i> Flag as Closed</a>
+        <a href="javascript:void(0)" class="btn btn-xs btn-danger"><i class="fa fa-flag"></i> Flag as Urgent</a>
+        <a href="javascript:void(0)" class="btn btn-xs btn-warning"><i class="fa fa-flag"></i> Flag as Invalid</a>
+        <hr>
+        <ul class="media-list media-feed push">
+          <!-- Comments -->
+          <%= render @issue.comments %>
+
+          <!-- Reply -->
+
+          <li class="media">
+            <a href="page_ready_user_profile.html" class="pull-left">
+              <img src="img/placeholders/avatars/avatar.jpg" alt="Avatar" class="img-circle">
+            </a>
+            <div class="media-body">
+              <form action="page_ready_tickets.html#tickets-single" method="post">
+                <textarea id="tickets-reply" name="tickets-reply" class="form-control" rows="5" placeholder="Enter your reply"></textarea>
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Post Reply</button>
+              </form>
+            </div>
+          </li>
+          <!-- END Replies -->
+        </ul>
+      </div>
+      <!-- END Issue Single -->
+    </div>
+    <!-- END Issue Details -->
+  </div>
+  <!-- END col -->
+</div>
+<!-- END Issue Content -->

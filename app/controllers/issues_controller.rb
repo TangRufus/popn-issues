@@ -2,6 +2,7 @@ class IssuesController < ApplicationController
   before_action :create_new_form, only: [:new, :create]
 
   def index
+    @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
   end
 
   def new
@@ -14,7 +15,7 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue_form.save
-        flash[:success] = 'Deal sent successfully'
+        flash[:success] = 'Issue created successfully'
         format.html { redirect_to @issue_form }
       else
         flash[:error] = @issue_form.errors.full_messages.uniq.join('. ')
@@ -24,7 +25,7 @@ class IssuesController < ApplicationController
   end
 
   def show
-    @issue = Issue.find(params[:id])
+    @issue = Issue.all.includes(comments: :user).where(id: params[:id]).first
   end
 
   private

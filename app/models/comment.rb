@@ -17,7 +17,7 @@
 
 class Comment < ActiveRecord::Base
   belongs_to :user
-  belongs_to :issue
+  belongs_to :issue, touch: true
 
   validates :body, presence: true
   validates :user, presence: true

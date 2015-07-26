@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
+//= require local_time
 //= require bootstrap-sprockets
 //= require appui/plugins
 //= require appui/app
