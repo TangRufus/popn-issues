@@ -56,18 +56,15 @@
           <%= render @issue.comments %>
 
           <!-- Reply -->
+          <li>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-1">
 
-          <li class="media">
-            <a href="page_ready_user_profile.html" class="pull-left">
-              <img src="img/placeholders/avatars/avatar.jpg" alt="Avatar" class="img-circle">
-            </a>
-            <div class="media-body">
-              <form action="page_ready_tickets.html#tickets-single" method="post">
-                <textarea id="tickets-reply" name="tickets-reply" class="form-control" rows="5" placeholder="Enter your reply"></textarea>
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-reply"></i> Post Reply</button>
-              </form>
-            </div>
-          </li>
+                <%= render 'comments/form' %>
+                    </div>
+                  </div>
+                </li>
+
           <!-- END Replies -->
         </ul>
       </div>

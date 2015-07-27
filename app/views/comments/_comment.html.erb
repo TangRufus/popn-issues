@@ -7,8 +7,8 @@
         <strong>@<%= comment.user.username %></strong> commented <strong><%= local_time_ago(comment.created_at) %></strong>
       </p>
       <%= markdownify(comment.body) %>
-
       <% end %>
+      <hr>
 
     </div>
   </div>
