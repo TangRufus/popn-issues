@@ -14,10 +14,16 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
+//
 //= require bootstrap-sprockets
+//
 //= require local_time
-//= require showdown
+//
+//= require markdown-it
+//= require markdown-it-emoji
+//
 //= require appui/plugins
 //= require appui/app
-//= require showdown_preview
+//
+//= require markdown_preview
 //= require issues

@@ -44,6 +44,13 @@ gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'modernizr-rails', '~> 2.7.1'
 gem 'local_time', '~> 1.0.2'
 
+# HTML::Pipeline
+gem 'html-pipeline', '~> 2.0'
+gem 'github-markdown', '~> 0.6.8'
+gem 'sanitize', '~> 4.0.0'
+gem 'gemoji', '~> 2.1.0'
+gem 'rinku', '~> 1.7.3'
+
 # Forms
 gem 'simple_form', '~> 3.1.0'
 gem 'actionform', git: 'https://github.com/rails/actionform.git', require: 'action_form'
@@ -61,7 +68,8 @@ group :development, :test do
 end
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-showdown', '~> 1.2.1'
+  gem 'rails-assets-markdown-it', '~> 4.4.0'
+  gem 'rails-assets-markdown-it-emoji', '~> 1.0.0'
 end
 
 ruby '2.2.2'
