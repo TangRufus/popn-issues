@@ -28,19 +28,19 @@
           <ul class="dropdown-menu dropdown-menu-right">
             <% unless @issue.urgent? %>
             <li>
-              <%= link_to '<i class="fa fa-flag pull-right"></i>
+              <%= link_to '<i class="fa fa-exclamation-triangle pull-right"></i>
               Urgent'.html_safe, change_status_issue_path(status: :urgent), method: :patch %>
             </li>
             <% end %>
             <% unless @issue.open? %>
             <li>
-              <%= link_to '<i class="fa fa-refresh pull-right"></i>
+              <%= link_to '<i class="fa fa-folder-open pull-right"></i>
               Open'.html_safe, change_status_issue_path(status: :open), method: :patch %>
             </li>
             <% end %>
             <% unless @issue.closed? %>
             <li>
-              <%= link_to '<i class="fa fa-check pull-right"></i>
+              <%= link_to '<i class="fa fa-folder pull-right"></i>
               Closed'.html_safe, change_status_issue_path(status: :closed), method: :patch %>
             </li>
             <% end %>
