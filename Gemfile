@@ -60,4 +60,8 @@ group :development, :test do
   gem 'quiet_assets', '~> 1.1.0'
 end
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-showdown', '~> 1.2.1'
+end
+
 ruby '2.2.2'
