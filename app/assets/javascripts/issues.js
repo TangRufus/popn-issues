@@ -12,7 +12,7 @@ $(function () {
   if (! $("body").hasClass("issues index"))
         return;
 
-  $scope = getUrlVar("scope") || "all";
+  $scope = getUrlVar("scope") || "open";
   $selector = "li#" +  $scope + "-issues";
   $( $selector ).addClass( "active" );
 });

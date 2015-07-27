@@ -4,6 +4,8 @@ class IssuesController < ApplicationController
 
   def index
     case params[:scope]
+    when 'all'
+      @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
     when 'urgent'
       @issues = Issue.urgent.includes(comments: :user).order(updated_at: :desc)
     when 'open'
@@ -11,7 +13,7 @@ class IssuesController < ApplicationController
     when 'closed'
       @issues = Issue.closed.includes(comments: :user).order(updated_at: :desc)
     else
-      @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
+      @issues = Issue.open.includes(comments: :user).order(updated_at: :desc)
     end
   end
 
