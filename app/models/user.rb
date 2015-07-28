@@ -63,6 +63,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.all_ordered_by_domain
+    all.sort_by { |u| [u.email.split('@').last, u.sign_in_count] }.reverse
+  end
+
   def allowed_email_domains
     return if email.end_with?('@pinot.hk')
     return if email.end_with?('@kpopn.com')
