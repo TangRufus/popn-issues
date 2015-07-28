@@ -45,6 +45,7 @@ gem 'auto_strip_attributes', '~> 2.0.6'
 gem 'bootstrap-sass', '~> 3.3.5.1'
 gem 'modernizr-rails', '~> 2.7.1'
 gem 'local_time', '~> 1.0.2'
+gem 'jquery-atwho-rails', '~> 1.3.2'
 
 # HTML::Pipeline
 gem 'html-pipeline', '~> 2.0'
@@ -71,7 +72,6 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 4.4.0'
-  gem 'rails-assets-markdown-it-emoji', '~> 1.0.0'
 end
 
 ruby '2.2.2'

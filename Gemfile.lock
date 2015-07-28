@@ -155,6 +155,7 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-atwho-rails (1.3.2)
     jquery-rails (4.0.4)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -220,7 +221,6 @@ GEM
       railties (= 4.2.3)
       sprockets-rails
     rails-assets-markdown-it (4.4.0)
-    rails-assets-markdown-it-emoji (1.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -350,6 +350,7 @@ DEPENDENCIES
   github-markdown (~> 0.6.8)
   html-pipeline (~> 2.0)
   jbuilder (~> 2.3.1)
+  jquery-atwho-rails (~> 1.3.2)
   jquery-rails (~> 4.0.3)
   jquery-rails-cdn (~> 1.0.3)
   jquery-turbolinks (~> 2.1.0)
@@ -359,7 +360,6 @@ DEPENDENCIES
   quiet_assets (~> 1.1.0)
   rails (= 4.2.3)
   rails-assets-markdown-it (~> 4.4.0)!
-  rails-assets-markdown-it-emoji (~> 1.0.0)!
   rails_12factor (~> 0.0.3)
   rinku (~> 1.7.3)
   rubocop (~> 0.32.0)

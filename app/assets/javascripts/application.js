@@ -16,14 +16,13 @@
 //= require turbolinks
 //
 //= require bootstrap-sprockets
-//
 //= require local_time
-//
 //= require markdown-it
-//= require markdown-it-emoji
+//= require jquery.atwho
 //
 //= require appui/plugins
 //= require appui/app
 //
 //= require markdown_preview
+//= require emoji_autocomplete
 //= require issues

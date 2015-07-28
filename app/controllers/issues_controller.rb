@@ -23,6 +23,7 @@ class IssuesController < ApplicationController
   def create
     @issue_form.submit(issue_params)
     @issue_form.comments.first.user = current_user
+    @issue_form.comments.first.issue = @issue_form.model
 
     respond_to do |format|
       if @issue_form.save

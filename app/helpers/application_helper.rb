@@ -15,7 +15,7 @@ module ApplicationHelper
   def pipeline_context
     {
       gfm: true,
-      asset_root: 'https://assets-cdn.github.com/images/icons/',
+      asset_root: 'https://a248.e.akamai.net/assets.github.com/images/icons/',
       whitelist: pipeline_whitelist
     }
   end
