@@ -4,6 +4,7 @@ module ApplicationHelper
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::BootstrapResponsiveImageFilter,
       HTML::Pipeline::EmojiFilter,
+      HTML::Pipeline::UsernameFilter,
       HTML::Pipeline::AutolinkFilter,
       HTML::Pipeline::SanitizationFilter
       ], pipeline_context
@@ -14,7 +15,8 @@ module ApplicationHelper
     {
       gfm: true,
       asset_root: 'https://a248.e.akamai.net/assets.github.com/images/icons/',
-      whitelist: pipeline_whitelist
+      whitelist: pipeline_whitelist,
+      username_pattern: User::USERNAME_AT_MENTION_PATTERN
     }
   end
 

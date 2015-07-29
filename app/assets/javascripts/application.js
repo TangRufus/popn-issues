@@ -25,4 +25,5 @@
 //
 //= require markdown_preview
 //= require emoji_autocomplete
+//= require autocomplete_at_mention
 //= require issues

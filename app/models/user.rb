@@ -34,6 +34,8 @@
 #
 
 class User < ActiveRecord::Base
+  USERNAME_PATTERN = /\A[a-z0-9]+\z/
+  USERNAME_AT_MENTION_PATTERN = /[a-z0-9]+/
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -49,7 +51,7 @@ class User < ActiveRecord::Base
 
   auto_strip_attributes :username, delete_whitespaces: true
 
-  validates :username, format: { with: /\A[a-z0-9]+\z/, message: 'only lowercase English characters and digits allowed' }
+  validates :username, format: { with: USERNAME_PATTERN, message: 'only lowercase English characters and digits allowed' }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :allowed_email_domains
 
