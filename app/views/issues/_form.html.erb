@@ -3,10 +3,10 @@
 <%= f.input :title, required: true, autofocus: true %>
 
 <%= f.simple_fields_for :comments do |c| %>
-<%= c.input :body, as: :text, required: true, input_html: { class: 'markdown-source', rows: 8, 'data-behavior': 'emoji-autocomplete' } %>
+<%= c.input :body, as: :text, required: true, input_html: { class: 'markdown-source', rows: 8, 'data-behavior': 'emoji-autocomplete', 'data-markdown': 'source' } %>
 <a class="text-muted" href="https://guides.github.com/features/mastering-markdown/" target="_blank"><i class="fa fa-github-square"></i> GitHub Markdown Supported (most of it)</a>
-<div id="markdown-preview">
-</div>
+
+<div data-markdown="preview"></div>
 <% end %>
 
 <div class="form-actions text-right">
