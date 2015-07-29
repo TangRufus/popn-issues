@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
@@ -19,6 +18,7 @@
 //= require local_time
 //= require markdown-it
 //= require jquery.atwho
+//= require toastr
 //
 //= require appui/plugins
 //= require appui/app

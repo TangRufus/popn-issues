@@ -72,6 +72,7 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-markdown-it', '~> 4.4.0'
+  gem 'rails-assets-toastr', '~> 2.1.1'
 end
 
 ruby '2.2.2'
