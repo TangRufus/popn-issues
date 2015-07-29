@@ -24,6 +24,6 @@
 //= require appui/app
 //
 //= require markdown_preview
-//= require emoji_autocomplete
 //= require autocomplete_at_mention
+//= require autocomplete_emoji
 //= require issues

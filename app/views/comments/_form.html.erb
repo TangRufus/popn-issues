@@ -1,6 +1,6 @@
 <%= simple_form_for CommentForm.new(Comment.new), url: comments_path(@issue) do |f| %>
 
-<%= f.input :body, label: false, as: :text, required: true, input_html: { class: 'markdown-source', rows: 8, 'data-behavior': 'emoji-autocomplete', 'data-at-mention': 'autocomplete', 'data-markdown': 'source' } %>
+<%= f.input :body, label: false, as: :text, required: true, input_html: { class: 'markdown-source', rows: 8, 'data-emoji': 'autocomplete', 'data-at-mention': 'autocomplete', 'data-markdown': 'source' } %>
 <a class="text-muted" href="https://guides.github.com/features/mastering-markdown/" target="_blank"><i class="fa fa-github-square"></i> GitHub Markdown Supported (most of it)</a>
 
 <div data-markdown="preview"></div>
