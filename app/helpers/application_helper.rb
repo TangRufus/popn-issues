@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def bootstrap_context(key)
-    case key
+    case key.downcase
     when 'danger', 'error', 'alert', 'urgent'
       'danger'
     when 'warning'
