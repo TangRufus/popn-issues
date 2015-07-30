@@ -1,25 +1,28 @@
 <%= content_for :title, 'Login' %>
 
 <!-- Login Form -->
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form', class: "form-horizontal"}) do |f| %>
-  <%= devise_error_messages! %>
-    <div class="col-xs-12">
-      <%= f.input :login, autofocus: true, class: 'form-control', placeholder: "Your username or email..", required: true %>
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form', class: 'form-horizontal form-bordered' }, wrapper: :horizontal_form) do |f| %>
+<%= devise_error_messages! %>
+
+<%= f.input :login, autofocus: true, placeholder: "Your username or email..", required: true %>
+<%= f.input :password, placeholder: "Your password..", required: true %>
+
+<div class="form-group user_remember_me">
+  <label class="remember-me col-sm-4 control-label" for="user_remember_me">Remember?</label>
+  <div class="col-sm-8">
+    <label class="csscheckbox csscheckbox-primary">
+      <%= f.check_box :remember_me %>
+      <span></span>
+    </label>
   </div>
-    <div class="col-xs-12">
-     <%= f.input :password, class: 'form-control', placeholder: "Your password..", required: true %>
+</div>
+
+
+<div class="form-group form-actions">
+  <div class="col-sm-5 col-sm-offset-7">
+    <%= f.button :button, 'Login', class: "btn btn-lg btn-block btn-effect-ripple btn-primary", data: { disable_with: "<i class='fa fa-circle-o-notch fa-spin'></i> loading..." } %>
   </div>
-  <div class="form-group form-actions">
-    <div class="col-xs-8">
-      <label class="csscheckbox csscheckbox-primary">
-        <%= f.check_box :remember_me %>
-        <span></span>
-      </label>
-      Remember Me?
-    </div>
-    <div class="col-xs-4 text-right">
-      <%= f.submit "Login", class: "btn btn-lg btn-block btn-effect-ripple btn-primary" %>
-    </div>
-  </div>
-  <% end %>
+</div>
+
+<% end %>
 <!-- END Login Form -->

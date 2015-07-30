@@ -1,6 +1,6 @@
 <%= content_for :title, 'Resend Confirmation' %>
 
-<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, :role => 'form', class: "form-horizontal"}) do |f| %>
+<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { role: 'form'}) do |f| %>
 
   <% if f.full_error :confirmation_token %>
     <div class="alert alert-danger">
@@ -8,13 +8,9 @@
     </div>
   <% end %>
 
-    <div class="col-xs-12">
-      <%= f.input :email, required: true, autofocus: true, class: 'form-control', placeholder: "Enter your email.." %>
-    </div>
+      <%= f.input :email, required: true, autofocus: true, placeholder: "Enter your email.." %>
 
   <div class="form-group form-actions">
-    <div class="col-xs-12 text-right">
-      <%= f.button :submit, "Resend confirmation instructions", class: "btn btn-lg btn-block btn-effect-ripple btn-primary" %>
-    </div>
+      <%= f.button :button, 'Resend confirmation instructions', class: 'btn btn-lg btn-block btn-effect-ripple btn-primary', data: { disable_with: '<i class="fa fa-circle-o-notch fa-spin"></i> loading...' } %>
   </div>
 <% end %>
