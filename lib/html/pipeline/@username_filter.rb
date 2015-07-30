@@ -12,6 +12,7 @@ module HTML
       def link_to_mentioned_user(login)
         result[:false_usernames] ||= []
         result[:mentioned_usernames] ||= []
+        result[:mentioned_user] ||= []
 
         return unless login_exists?(login)
 
@@ -22,8 +23,11 @@ module HTML
         return false if result[:false_usernames].include?(login)
         return true if result[:mentioned_usernames].include?(login)
 
-        if User.where(username: login).take
+        mentioned_user = User.where(username: login).take
+
+        if mentioned_user
           result[:mentioned_usernames] |= [login]
+          result[:mentioned_user] |= [mentioned_user]
         else
           result[:false_usernames] |= [login]
           false

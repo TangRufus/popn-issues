@@ -16,6 +16,8 @@
 #
 
 class Comment < ActiveRecord::Base
+  include MarkdownHelper
+
   belongs_to :user
   belongs_to :issue, touch: true
 
@@ -23,4 +25,14 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
   validates :issue, presence: true
   validates_associated :user, :issue
+
+  def participants
+    return [user] unless mentioned_users
+    users = mentioned_users << user
+    users.flatten.uniq
+  end
+
+  def mentioned_users
+    @mentioned ||= markdownify_mentioned_user(body)
+  end
 end

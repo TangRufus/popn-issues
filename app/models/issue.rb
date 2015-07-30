@@ -29,6 +29,10 @@ class Issue < ActiveRecord::Base
   validates :user, presence: true
   validates_associated :user
 
+  def participants
+    comments.collect(&:participants).flatten.uniq
+  end
+
   def last_commenter
     comments.last.user.username
   end

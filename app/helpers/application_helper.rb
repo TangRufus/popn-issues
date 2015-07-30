@@ -1,34 +1,4 @@
 module ApplicationHelper
-  def markdownify(content)
-    pipeline = HTML::Pipeline.new [
-      HTML::Pipeline::MarkdownFilter,
-      HTML::Pipeline::BootstrapResponsiveImageFilter,
-      HTML::Pipeline::EmojiFilter,
-      HTML::Pipeline::UsernameFilter,
-      HTML::Pipeline::AutolinkFilter,
-      HTML::Pipeline::SanitizationFilter
-      ], pipeline_context
-      pipeline.call(content)[:output].to_s.html_safe
-  end
-
-  def pipeline_context
-    {
-      gfm: true,
-      asset_root: 'https://a248.e.akamai.net/assets.github.com/images/icons/',
-      whitelist: pipeline_whitelist,
-      username_pattern: User::USERNAME_AT_MENTION_PATTERN
-    }
-  end
-
-  def pipeline_whitelist
-    Sanitize::Config.merge(
-      HTML::Pipeline::SanitizationFilter::WHITELIST,
-      attributes: {
-        'img' => HTML::Pipeline::SanitizationFilter::WHITELIST[:attributes]['img'] << 'class'
-      }
-    )
-  end
-
   def bootstrap_context(key)
     case key.downcase
     when 'danger', 'error', 'alert', 'urgent'
