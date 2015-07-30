@@ -1,0 +1,11 @@
+<%= simple_form_for @user_form, html: { class: 'form-horizontal form-bordered' }, wrapper: :horizontal_form do |f| %>
+
+<%= f.input :subscribe_new_issue, as: :select, collection: [['Yes', true] ,['No', false]], include_blank: false %>
+
+<div class="form-group form-actions">
+  <div class="col-md-12">
+    <%= f.button :button, class: 'pull-right btn btn-lg btn-primary', data: { disable_with: "<i class='fa fa-circle-o-notch fa-spin'></i> loading..." } %>
+  </div>
+</div>
+
+<% end %>

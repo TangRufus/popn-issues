@@ -27,6 +27,7 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue_form.save
+        NewIssueNotificationService.new(issue: @issue_form.model).call
         flash[:success] = 'Issue created successfully'
         format.html { redirect_to @issue_form }
       else

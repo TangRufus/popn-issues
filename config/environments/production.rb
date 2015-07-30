@@ -88,4 +88,9 @@ Rails.application.configure do
     authentication: 'login', # Mandrill supports 'plain' or 'login'
     domain: Rails.application.secrets.app_domain_host
   }
+
+  # Devise
+  config.action_mailer.default_url_options = {
+    host: Rails.application.secrets.app_domain_host
+  }
 end

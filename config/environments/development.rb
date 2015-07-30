@@ -51,4 +51,10 @@ Rails.application.configure do
     address: Rails.application.secrets.app_domain_host,
     port: '1025'
   }
+
+  # Devise
+  config.action_mailer.default_url_options = {
+    host: Rails.application.secrets.app_domain_host,
+    port: Rails.application.secrets.port
+  }
 end

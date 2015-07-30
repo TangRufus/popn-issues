@@ -23,12 +23,14 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  username               :string
+#  subscribe_new_issue    :boolean          default(TRUE), not null
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_subscribe_new_issue   (subscribe_new_issue)
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
@@ -36,14 +38,11 @@
 class User < ActiveRecord::Base
   USERNAME_PATTERN = /\A[a-z0-9]+\z/
   USERNAME_AT_MENTION_PATTERN = /[a-z0-9]+/
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
-  # Virtual attribute for authenticating by either username or email
-  # This is in addition to a real persisted field like 'username'
   attr_accessor :login
 
   has_many :issues
@@ -54,6 +53,8 @@ class User < ActiveRecord::Base
   validates :username, format: { with: USERNAME_PATTERN, message: 'only lowercase English characters and digits allowed' }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :allowed_email_domains
+
+  scope :subscribed_to_new_issues, -> { where(subscribe_new_issue: true) }
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
