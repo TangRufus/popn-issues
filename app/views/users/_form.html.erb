@@ -1,6 +1,8 @@
 <%= simple_form_for @user_form, html: { class: 'form-horizontal form-bordered' }, wrapper: :horizontal_form do |f| %>
 
-<%= f.input :subscribe_new_issue, as: :select, collection: [['Yes', true] ,['No', false]], include_blank: false %>
+<%= f.input :subscribe_new_issues, label: 'Subscribe to New Issues', as: :select, collection: [['Yes', true] ,['No', false]], include_blank: false %>
+
+<%= f.input :subscribe_urgent_issues, label: 'Subscribe to Urgent Issues', as: :select, collection: [['Yes', true] ,['No', false]], include_blank: false %>
 
 <div class="form-group form-actions">
   <div class="col-md-12">

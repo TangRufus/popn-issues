@@ -5,7 +5,11 @@ class CommentsController < ApplicationController
     @comment_form.submit(comment_params)
 
     if @comment_form.save
-      NewCommentNotificationService.new(comment: @comment_form.model).call
+      if @issue.urgent?
+        UrgentIssueNotificationService.new(issue: @issue).call
+      else
+        NewCommentNotificationService.new(comment: @comment_form.model).call
+      end
       flash[:success] = 'Comment added successfully'
     else
       flash[:error] = @comment_form.errors.full_messages.uniq.join('. ')

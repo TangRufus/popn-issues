@@ -33,8 +33,12 @@ class Issue < ActiveRecord::Base
     comments.collect(&:participants).flatten.uniq
   end
 
-  def last_commenter
+  def last_commenter_username
     comments.last.user.username
+  end
+
+  def last_commenter
+    comments.last.user
   end
 
   def last_commented_at

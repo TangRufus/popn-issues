@@ -27,6 +27,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:subscribe_new_issue)
+    params.require(:user).permit(:subscribe_new_issues, :subscribe_urgent_issues)
   end
 end

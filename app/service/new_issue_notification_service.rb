@@ -8,7 +8,7 @@ class NewIssueNotificationService
     recipients = subscribers.flatten.uniq.reject { |subscriber| subscriber == @issue.user }
 
     recipients.each do |recipient|
-      IssueMailer.new_issue_notification(issue: @issue, recipient: recipient).deliver_later
+      IssueMailer.new_issue_notification(recipient: recipient, issue: @issue).deliver_later
     end
   end
 end

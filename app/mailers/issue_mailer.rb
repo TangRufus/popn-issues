@@ -26,4 +26,15 @@ class IssueMailer < ApplicationMailer
 
     mail(from: from, to: to, subject: subject)
   end
+
+  def urgent_issue_notification(recipient:, issue:)
+    @recipient = recipient
+    @issue = issue
+    @comments = issue.comments
+
+    to = "\"#{@recipient.username}\" <#{@recipient.email}>"
+    subject = "Urgent [popn-issues] #{@issue.title} (##{@issue.id})"
+
+    mail(to: to, subject: subject)
+  end
 end

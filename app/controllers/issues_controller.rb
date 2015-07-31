@@ -44,6 +44,7 @@ class IssuesController < ApplicationController
   def change_status
     @issue = Issue.find(params[:id])
     if @issue.update(status: issue_status_params)
+      UrgentIssueNotificationService.new(issue: @issue).call if @issue.urgent?
       flash[:success] = 'Issue updated'
     else
       flash[:error] = @issue.errors.full_messages.uniq.join('. ')

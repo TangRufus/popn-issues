@@ -1,0 +1,20 @@
+Urgent Issue: <%= @issue.title %> #<%= @issue.id %>
+
+<% @comments.reverse_each do |comment| %>
+  <hr>
+  <strong>@<%= comment.user.username %></strong> commented at <strong><%= comment.created_at.to_formatted_s(:short) %></strong>
+  <%= markdownify(comment.body) %>
+<% end %>
+
+<p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br>
+  View it on <%= link_to "Popn Issues ##{@issue.id}", issue_url(@issue) %>.
+  <br>
+  This is a system generated email. Do not reply.</p>
+
+  <div itemscope itemtype="http://schema.org/EmailMessage">
+    <div itemprop="action" itemscope itemtype="http://schema.org/ViewAction">
+      <link itemprop="url" href="<%= issue_url(@issue) %>"></link>
+      <meta itemprop="name" content="View Issue"></meta>
+    </div>
+    <meta itemprop="description" content="View this on Popn Issues"></meta>
+  </div>
