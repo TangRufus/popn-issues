@@ -1,9 +1,9 @@
 Urgent Issue: <%= @issue.title %> #<%= @issue.id %>
 
 <% @comments.reverse_each do |comment| %>
-  <hr>
-  <strong>@<%= comment.user.username %></strong> commented at <strong><%= comment.created_at.to_formatted_s(:short) %></strong>
-  <%= markdownify(comment.body) %>
+<hr>
+<strong>@<%= comment.user.username %></strong> commented at <strong><%= comment.created_at.to_formatted_s(:short) %></strong>
+<%= markdownify(comment.body) %>
 <% end %>
 
 <p style="font-size:small;-webkit-text-size-adjust:none;color:#666;">&mdash;<br>
@@ -12,9 +12,9 @@ Urgent Issue: <%= @issue.title %> #<%= @issue.id %>
   This is a system generated email. Do not reply.</p>
 
   <div itemscope itemtype="http://schema.org/EmailMessage">
-    <div itemprop="action" itemscope itemtype="http://schema.org/ViewAction">
-      <link itemprop="url" href="<%= issue_url(@issue) %>"></link>
-      <meta itemprop="name" content="View Issue"></meta>
+    <div itemprop="potentialAction" itemscope itemtype="http://schema.org/ViewAction">
+      <link itemprop="target" href="<%= issue_url(@issue) %>"/>
+      <meta itemprop="name" content="View Issue"/>
     </div>
-    <meta itemprop="description" content="View this on Popn Issues"></meta>
+    <meta itemprop="description" content="View this on Popn Issues"/>
   </div>
