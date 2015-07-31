@@ -5,11 +5,14 @@ class NewCommentNotificationService
   end
 
   def call
-    participants = @issue.participants.flatten.uniq
-    recipients = participants - [@comment.user]
-
     recipients.each do |recipient|
       IssueMailer.new_comment_notification(comment: @comment, recipient: recipient).deliver_later
     end
+  end
+
+  private
+
+  def recipients
+    @issue.participants.flatten.uniq - [@comment.user]
   end
 end
