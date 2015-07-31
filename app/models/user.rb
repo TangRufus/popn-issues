@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable
+         :confirmable, :lockable, :timeoutable, :async
 
   attr_accessor :login
 
