@@ -3,7 +3,7 @@
   <td><%= mail_to user.email, user.email %></td>
   <td>
     <% if user.confirmed? %>
-      <%= user.last_sign_in_at ? local_time_ago(user.last_sign_in_at) : 'Never signed in'%>
+      <%= user.last_sign_in_at ? local_time_ago(user.current_sign_in_at) : 'Never signed in'%>
     <% else %>
       <%= 'Not comfirmed yet'%>
     <% end %>
