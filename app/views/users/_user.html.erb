@@ -1,5 +1,11 @@
 <tr>
   <td><strong>@<%= user.username %></strong></td>
   <td><%= mail_to user.email, user.email %></td>
-  <td><%= local_time_ago(user.last_sign_in_at) if user.last_sign_in_at %></td>
+  <td>
+    <% if user.confirmed? %>
+      <%= user.last_sign_in_at ? local_time_ago(user.last_sign_in_at) : 'Never signed in'%>
+    <% else %>
+      <%= 'Not comfirmed yet'%>
+    <% end %>
+  </td>
 </tr>
