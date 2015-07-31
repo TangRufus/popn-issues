@@ -1,0 +1,14 @@
+<%= content_for :header_title, @wiki.title %>
+
+<!-- Get Started Block -->
+<div class="block full">
+  <!-- Get Started Content -->
+  <%= link_to 'Edit <i class="fa fa-pencil"></i>'.html_safe, edit_wiki_path(@wiki), class: 'pull-right btn btn-lg btn-effect-ripple btn-primary' %>
+  <h2><%= @wiki.title %> #<%= @wiki.id %></h2>
+  <p class="text-muted sub-header">
+    last edited by <stong>@<%= @wiki.user.username %></stong> <%= local_time_ago(@wiki.updated_at) %>
+  </p>
+  <%= markdownify(@wiki.body) %>
+  <!-- END Get Started Content -->
+</div>
+<!-- END Get Started Block -->

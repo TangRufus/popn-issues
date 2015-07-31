@@ -1,0 +1,16 @@
+<%= content_for :header_title, "Wiki ##{@wiki.id} Edit" %>
+
+<!-- Get Started Block -->
+<div class="block full">
+  <!-- Get Started Title -->
+  <div class="block-title">
+    <h2>Edit Wiki #<%= @wiki.id %></h2>
+  </div>
+  <!-- END Get Started Title -->
+
+  <!-- Get Started Content -->
+  <%= render 'form' %>
+
+  <!-- END Get Started Content -->
+</div>
+<!-- END Get Started Block -->
