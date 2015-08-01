@@ -1,5 +1,6 @@
+- FB auto post from RSS
+- Chrome Push Notification
 - Logentries
-- mandrill
 - search
 - pagination
 - respond_with
