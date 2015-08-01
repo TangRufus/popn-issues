@@ -58,6 +58,11 @@ gem 'rinku', '~> 1.7.3'
 gem 'simple_form', '~> 3.1.0'
 gem 'actionform', git: 'https://github.com/rails/actionform.git', require: 'action_form'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-markdown-it', '~> 4.4.0'
+  gem 'rails-assets-toastr', '~> 2.1.1'
+end
+
 group :development, :test do
   gem 'annotate', '~> 2.6.5'
   gem 'better_errors', '~> 2.1.1'
@@ -67,12 +72,6 @@ group :development, :test do
   gem 'brakeman', '~> 3.0.2', require: false
   gem 'dawnscanner', '~> 1.3.1', require: false
   gem 'rubocop', '~> 0.32.0', require: false
-  gem 'quiet_assets', '~> 1.1.0'
-end
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-markdown-it', '~> 4.4.0'
-  gem 'rails-assets-toastr', '~> 2.1.1'
 end
 
 ruby '2.2.2'

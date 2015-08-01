@@ -6,11 +6,11 @@ module IssuesHelper
   def status_color_class(status)
     case status.downcase
     when 'urgent'
-      key = 'danger'
+      'danger'
     when 'closed'
-      key = 'default'
+      'default'
     else
-      key = 'info'
+      'info'
     end
   end
 end

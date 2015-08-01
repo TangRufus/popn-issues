@@ -4,4 +4,3 @@
 - search
 - pagination
 - respond_with
-- rubocop

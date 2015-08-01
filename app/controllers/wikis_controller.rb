@@ -2,7 +2,6 @@ class WikisController < ApplicationController
   before_action :set_wiki, only: [:show, :edit, :update]
   before_action :create_form, only: [:new, :create, :edit, :update]
 
-
   def index
     @wikis = Wiki.all.order(updated_at: :desc)
   end
@@ -14,14 +13,12 @@ class WikisController < ApplicationController
     @wiki_form.submit(issue_params)
     @wiki_form.user = current_user
 
-    respond_to do |format|
-      if @wiki_form.save
-        flash[:success] = 'Wiki created successfully'
-        format.html { redirect_to @wiki_form }
-      else
-        flash[:error] = @wiki_form.errors.full_messages.uniq.join('. ')
-        format.html { render :new }
-      end
+    if @wiki_form.save
+      flash[:success] = 'Wiki created successfully'
+      redirect_to @wiki_form
+    else
+      flash[:error] = @wiki_form.errors.full_messages.uniq.join('. ')
+      render :new
     end
   end
 
@@ -35,14 +32,12 @@ class WikisController < ApplicationController
     @wiki_form.submit(issue_params)
     @wiki_form.user = current_user
 
-    respond_to do |format|
-      if @wiki_form.save
-        flash[:success] = 'Wiki updated successfully'
-        format.html { redirect_to @wiki_form }
-      else
-        flash[:error] = @wiki_form.errors.full_messages.uniq.join('. ')
-        format.html { render :new }
-      end
+    if @wiki_form.save
+      flash[:success] = 'Wiki updated successfully'
+      redirect_to @wiki_form
+    else
+      flash[:error] = @wiki_form.errors.full_messages.uniq.join('. ')
+      render :new
     end
   end
 

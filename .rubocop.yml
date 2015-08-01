@@ -6,7 +6,7 @@ AllCops:
     - 'config/unicorn.rb'
     - 'db/schema.rb'
     - 'db/migrate/2015*.rb'
-    - '**/*/*.erb'
+    - 'app/views/*/*.erb'
 
 Metrics/LineLength:
   Max: 120

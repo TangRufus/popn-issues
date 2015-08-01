@@ -3,18 +3,9 @@ class IssuesController < ApplicationController
   before_action :set_counts, only: [:index, :new, :show]
 
   def index
-    case params[:scope]
-    when 'all'
-      @issues = Issue.all.includes(comments: :user).order(updated_at: :desc)
-    when 'urgent'
-      @issues = Issue.urgent.includes(comments: :user).order(updated_at: :desc)
-    when 'open'
-      @issues = Issue.open.includes(comments: :user).order(updated_at: :desc)
-    when 'closed'
-      @issues = Issue.closed.includes(comments: :user).order(updated_at: :desc)
-    else
-      @issues = Issue.open.includes(comments: :user).order(updated_at: :desc)
-    end
+    issue_scrope = %w(all urgent open closed).include?(params[:scope]) ? params[:scope] : 'open'
+
+    @issues = Issue.send(issue_scrope).includes(comments: :user).order(updated_at: :desc)
   end
 
   def new
@@ -25,20 +16,18 @@ class IssuesController < ApplicationController
     @issue_form.comments.first.user = current_user
     @issue_form.comments.first.issue = @issue_form.model
 
-    respond_to do |format|
-      if @issue_form.save
-        NewIssueNotificationService.new(issue: @issue_form.model).call
-        flash[:success] = 'Issue created successfully'
-        format.html { redirect_to @issue_form }
-      else
-        flash[:error] = @issue_form.errors.full_messages.uniq.join('. ')
-        format.html { render :new }
-      end
+    if @issue_form.save
+      NewIssueNotificationService.new(issue: @issue_form.model).call
+      flash[:success] = 'Issue created successfully'
+      redirect_to @issue_form
+    else
+      flash[:error] = @issue_form.errors.full_messages.uniq.join('. ')
+      render :new
     end
   end
 
   def show
-    @issue = Issue.all.includes(comments: :user).where(id: params[:id]).first
+    @issue = Issue.includes(comments: :user).find(params[:id])
   end
 
   def change_status

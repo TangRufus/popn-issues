@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
 
   auto_strip_attributes :username, delete_whitespaces: true
 
-  validates :username, format: { with: USERNAME_PATTERN, message: 'only lowercase English characters and digits allowed' }
+  validates :username, format: { with: USERNAME_PATTERN }
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validate :allowed_email_domains
 
@@ -63,9 +63,9 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
     if login
-      where(conditions.to_hash).where(['username = :value OR email = :value', { value: login.downcase }]).first
+      where(conditions.to_hash).find_by(['username = :value OR email = :value', { value: login.downcase }])
     else
-      where(conditions.to_hash).first
+      find_by(conditions.to_hash)
     end
   end
 
@@ -74,11 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def allowed_email_domains
-    return if email.end_with?('@pinot.hk')
-    return if email.end_with?('@kpopn.com')
-    return if email.end_with?('@apopn.com')
-    return if email.end_with?('@po.pn')
-    return if email.end_with?('@homecafe.com.tw')
+    return if email.end_with?('@pinot.hk', '@kpopn.com', '@apopn.com', '@po.pn', '@homecafe.com.tw')
     errors.add(:email, 'domain not allowed')
   end
 end

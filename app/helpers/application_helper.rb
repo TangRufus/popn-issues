@@ -1,14 +1,11 @@
 module ApplicationHelper
   def bootstrap_context(key)
+    return key if %w(danger warning success default info).include?(key)
     case key.downcase
     when 'danger', 'error', 'alert', 'urgent'
       'danger'
-    when 'warning'
-      'warning'
-    when 'success'
-      'success'
     when 'default', 'closed'
-      key = 'default'
+      'default'
     else
       'info'
     end
