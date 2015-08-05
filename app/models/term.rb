@@ -15,8 +15,12 @@
 #
 
 class Term < ActiveRecord::Base
-  enum taxonomies: [:category, :post_tag, :post_format]
+  enum taxonomy: [:category, :post_tag, :post_format]
 
   has_many :taggings, dependent: :destroy
   has_many :posts, through: :taggings
+
+  def self.taxonomy_num(taxonomy_str)
+    taxonomies.key[taxonomy_str]
+  end
 end

@@ -31,12 +31,12 @@ gem 'rails_12factor', '~> 0.0.3'
 
 # Backgroud jobs
 gem 'sidekiq', '~> 3.4.0'
+gem 'sidetiq', '~> 0.6.3'
 # SideKiq web console
 gem 'sinatra', '~> 1.4.6', require: nil
 
-# Facebook Auto Post
+# Wordpress
 gem 'rubypress', '~> 1.1.0'
-gem 'koala', '~> 2.0.0'
 
 # Authentications
 gem 'devise', '~> 3.5.0'

@@ -13,6 +13,14 @@ module Wordpress
       save_posts modified_posts
     end
 
+    def latest_posts
+      @client.getPosts(filter: latest_posts_filter)
+    end
+
+    def modified_posts
+      @client.getPosts(filter: modified_posts_filter)
+    end
+
     private
 
     def save_posts(posts)
@@ -38,20 +46,13 @@ module Wordpress
     end
 
     def save_term(term_attrs)
+      taxonomy = Term.taxonomy_num(term_attrs['taxonomy'])
       attributes = {
         host: @host,
         slug: term_attrs['slug'],
-        taxonomy: term_attrs['taxonomy']
+        taxonomy: taxonomy
       }
       Term.where(attributes).first_or_create!
-    end
-
-    def latest_posts
-      @client.getPosts(filter: latest_posts_filter)
-    end
-
-    def modified_posts
-      @client.getPosts(filter: modified_posts_filter)
     end
 
     def latest_posts_filter
