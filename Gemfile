@@ -34,6 +34,10 @@ gem 'sidekiq', '~> 3.4.0'
 # SideKiq web console
 gem 'sinatra', '~> 1.4.6', require: nil
 
+# Facebook Auto Post
+gem 'rubypress', '~> 1.1.0'
+gem 'koala', '~> 2.0.0'
+
 # Authentications
 gem 'devise', '~> 3.5.0'
 gem 'devise-async', '~> 0.10.1'

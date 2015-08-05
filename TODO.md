@@ -1,7 +1,7 @@
-- FB auto post from RSS
+- FB auto post
 - Chrome Push Notification
 - Logentries
 - search
 - pagination
 - respond_with
-- flash messages helper: multiple 
+- flash messages helper: multiple

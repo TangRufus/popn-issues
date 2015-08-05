@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731062806) do
+ActiveRecord::Schema.define(version: 20150805132143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,40 @@ ActiveRecord::Schema.define(version: 20150731062806) do
   add_index "issues", ["status"], name: "index_issues_on_status", using: :btree
   add_index "issues", ["title"], name: "index_issues_on_title", unique: true, using: :btree
   add_index "issues", ["user_id"], name: "index_issues_on_user_id", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.text     "title",        null: false
+    t.datetime "published_at", null: false
+    t.datetime "modified_at",  null: false
+    t.string   "link",         null: false
+    t.text     "excerpt"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "posts", ["link"], name: "index_posts_on_link", unique: true, using: :btree
+  add_index "posts", ["modified_at"], name: "index_posts_on_modified_at", using: :btree
+  add_index "posts", ["published_at"], name: "index_posts_on_published_at", using: :btree
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "term_id",    null: false
+    t.integer  "post_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["post_id"], name: "index_taggings_on_post_id", using: :btree
+  add_index "taggings", ["term_id"], name: "index_taggings_on_term_id", using: :btree
+
+  create_table "terms", force: :cascade do |t|
+    t.string   "slug",       null: false
+    t.string   "host",       null: false
+    t.integer  "taxonomy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "terms", ["host", "slug", "taxonomy"], name: "index_terms_on_host_and_slug_and_taxonomy", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                   default: "",    null: false
@@ -83,4 +117,5 @@ ActiveRecord::Schema.define(version: 20150731062806) do
   add_index "wikis", ["title"], name: "index_wikis_on_title", unique: true, using: :btree
   add_index "wikis", ["user_id"], name: "index_wikis_on_user_id", using: :btree
 
+  add_foreign_key "taggings", "posts"
 end
