@@ -21,6 +21,6 @@ class Term < ActiveRecord::Base
   has_many :posts, through: :taggings
 
   def self.taxonomy_num(taxonomy_str)
-    taxonomies.key[taxonomy_str]
+    taxonomies[taxonomy_str]
   end
 end
