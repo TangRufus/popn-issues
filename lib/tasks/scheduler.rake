@@ -4,5 +4,7 @@ task schedule_crawlers: :environment do
     KpopnModifiedPostsCrawlerJob.perform_later
     KpopnLatestPostsCrawlerJob.perform_later
     KpopnLatestPostsCrawlerJob.set(wait: 5.minutes).perform_later
+    ApopnModifiedPostsCrawlerJob.set(wait: 6.minutes).perform_later
+    ApopnLatestPostsCrawlerJob.set(wait: 7.minutes).perform_later
   puts "Scheduled."
 end
