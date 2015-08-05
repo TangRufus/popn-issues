@@ -21,6 +21,17 @@ module Wordpress
       @client.getPosts(filter: modified_posts_filter)
     end
 
+    def set_term_url(term)
+      url = "http://#{@host}/#{term.tax}/"
+      unless term.father.zero?
+        url += @client.getTerm(term_id: term.father, taxonomy: term.taxonomy)['slug']
+        url += '/'
+      end
+      url += term.slug
+      url += '/'
+      term.update(url: url)
+    end
+
     private
 
     def save_posts(posts)
@@ -50,9 +61,11 @@ module Wordpress
       attributes = {
         host: @host,
         slug: term_attrs['slug'],
-        taxonomy: taxonomy
+        taxonomy: taxonomy,
+        father: term_attrs['parent']
       }
-      Term.where(attributes).first_or_create!
+      term = Term.where(attributes).first_or_create!
+
     end
 
     def latest_posts_filter

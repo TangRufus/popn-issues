@@ -10,6 +10,7 @@
 #  excerpt      :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  purged_at    :datetime
 #
 # Indexes
 #
@@ -22,11 +23,17 @@ class Post < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :terms, through: :taggings
 
-  def next
-    Post.where("published_at > ?", published_at).first
+  def purge_urls
+    urls = [link]
+    urls << next_post.link if next_post
+    urls << prev_post.link if prev_post
   end
 
-  def prev
-    Post.where("published_at < ?", published_at).last
+  def next_post
+    Post.where("published_at > ?", published_at).order(published_at: :desc).first
+  end
+
+  def prev_post
+    Post.where("published_at < ?", published_at).order(published_at: :asc).last
   end
 end

@@ -5,3 +5,4 @@
 - pagination
 - respond_with
 - flash messages helper: multiple
+- post link --> url

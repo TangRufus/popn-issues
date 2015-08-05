@@ -10,6 +10,7 @@
 #  excerpt      :text
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  purged_at    :datetime
 #
 # Indexes
 #
