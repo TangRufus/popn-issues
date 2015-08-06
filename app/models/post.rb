@@ -43,7 +43,11 @@ class Post < ActiveRecord::Base
   end
 
   def purge_from_cloudflare
+    return unless should_purge?
     PurgeCloudflareJob.perform_later(self)
+    terms.each do |term|
+      PurgeCloudflareJob.perform_later(term)
+    end
   end
 
   def should_purge?

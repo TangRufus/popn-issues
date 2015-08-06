@@ -65,9 +65,7 @@ module Wordpress
         taxonomy: taxonomy,
         father: term_attrs['parent']
       }
-      term = Term.where(attributes).first_or_create!
-      PurgeCloudflareJob.perform_later(term)
-      term
+      Term.where(attributes).first_or_create!
     end
 
     def latest_posts_filter
