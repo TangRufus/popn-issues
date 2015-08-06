@@ -45,4 +45,8 @@ class Post < ActiveRecord::Base
   def purge_from_cloudflare
     PurgeCloudflareJob.perform_later(self)
   end
+
+  def should_purge?
+    purged_at.nil? || purged_at < published_at || purged_at < modified_at
+  end
 end

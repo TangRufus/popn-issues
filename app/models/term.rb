@@ -42,4 +42,8 @@ class Term < ActiveRecord::Base
   def set_url
     SetTermUrlJob.perform_later(self)
   end
+
+  def should_purge?
+    true
+  end
 end

@@ -6,7 +6,7 @@ class CloudflarePurge
   end
 
   def call
-    return unless should_purge?
+    return unless @record.should_purge?
     response = HTTParty.delete("https://api.cloudflare.com/client/v4/zones/#{zone_id}/purge_cache", headers: headers, body: body)
 
     puts response.parsed_response
@@ -17,15 +17,6 @@ class CloudflarePurge
   end
 
   private
-
-  def should_purge?
-    return true if @record.is_a? Term
-    return true if @record.purged_at.nil?
-    if @record.is_a? Post
-      @record.purged_at < @record.published_at || @record.purged_at < @record.modified_at
-    end
-    false
-  end
 
   def headers
     {
