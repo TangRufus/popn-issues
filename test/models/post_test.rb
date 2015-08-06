@@ -11,9 +11,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  purged_at    :datetime
+#  host         :string           not null
 #
 # Indexes
 #
+#  index_posts_on_host          (host)
 #  index_posts_on_link          (link) UNIQUE
 #  index_posts_on_modified_at   (modified_at)
 #  index_posts_on_published_at  (published_at)

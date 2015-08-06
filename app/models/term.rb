@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #  father     :integer          not null
 #  url        :string
+#  purged_at  :datetime
 #
 # Indexes
 #

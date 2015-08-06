@@ -49,7 +49,8 @@ module Wordpress
         published_at: Time.zone.local(*post_attrs['post_date'].to_a),
         modified_at: Time.zone.local(*post_attrs['post_modified'].to_a),
         link: post_attrs['link'],
-        excerpt: post_attrs['post_excerpt']
+        excerpt: post_attrs['post_excerpt'],
+        host: @host
       }
       post = Post.where(link: post_attrs['link']).first_or_initialize
       post.update(attributes)
@@ -65,15 +66,16 @@ module Wordpress
         father: term_attrs['parent']
       }
       term = Term.where(attributes).first_or_create!
-
+      PurgeCloudflareJob.perform_later(term)
+      term
     end
 
     def latest_posts_filter
-      { post_type: 'post', post_status: 'publish', number: 100, 'order': 'DESC' }
+      { post_type: 'post', post_status: 'publish', number: 20, 'order': 'DESC' }
     end
 
     def modified_posts_filter
-      { post_type: 'post', post_status: 'publish', number: 100, orderby: 'modified', order: 'DESC' }
+      { post_type: 'post', post_status: 'publish', number: 20, orderby: 'modified', order: 'DESC' }
     end
   end
 end

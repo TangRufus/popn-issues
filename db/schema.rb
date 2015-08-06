@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805215204) do
+ActiveRecord::Schema.define(version: 20150805235132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,10 @@ ActiveRecord::Schema.define(version: 20150805215204) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.datetime "purged_at"
+    t.string   "host",         null: false
   end
 
+  add_index "posts", ["host"], name: "index_posts_on_host", using: :btree
   add_index "posts", ["link"], name: "index_posts_on_link", unique: true, using: :btree
   add_index "posts", ["modified_at"], name: "index_posts_on_modified_at", using: :btree
   add_index "posts", ["published_at"], name: "index_posts_on_published_at", using: :btree
@@ -72,6 +74,7 @@ ActiveRecord::Schema.define(version: 20150805215204) do
     t.datetime "updated_at", null: false
     t.integer  "father",     null: false
     t.string   "url"
+    t.datetime "purged_at"
   end
 
   add_index "terms", ["host", "slug", "taxonomy"], name: "index_terms_on_host_and_slug_and_taxonomy", unique: true, using: :btree

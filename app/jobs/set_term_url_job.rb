@@ -1,5 +1,5 @@
 class SetTermUrlJob < ActiveJob::Base
-  queue_as :default
+  queue_as :high
 
   def perform(term)
     return unless term.url.nil?

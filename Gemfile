@@ -37,6 +37,9 @@ gem 'sinatra', '~> 1.4.6', require: nil
 # Wordpress
 gem 'rubypress', '~> 1.1.0'
 
+# CloudFlare
+gem 'httparty', '~> 0.13.5'
+
 # Authentications
 gem 'devise', '~> 3.5.0'
 gem 'devise-async', '~> 0.10.1'
