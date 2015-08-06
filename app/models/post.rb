@@ -31,6 +31,7 @@ class Post < ActiveRecord::Base
     urls = [link]
     urls << next_post.link if next_post
     urls << prev_post.link if prev_post
+    urls
   end
 
   def next_post
