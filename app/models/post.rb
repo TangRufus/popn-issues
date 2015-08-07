@@ -2,16 +2,17 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :text             not null
-#  published_at :datetime         not null
-#  modified_at  :datetime         not null
-#  link         :string           not null
-#  excerpt      :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  purged_at    :datetime
-#  host         :string           not null
+#  id              :integer          not null, primary key
+#  title           :text             not null
+#  published_at    :datetime         not null
+#  modified_at     :datetime         not null
+#  link            :string           not null
+#  excerpt         :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  purged_at       :datetime
+#  host            :string           not null
+#  posted_to_fb_at :datetime
 #
 # Indexes
 #
@@ -22,10 +23,17 @@
 #
 
 class Post < ActiveRecord::Base
+  scope :posted_to_facebook, -> {where.not(posted_to_fb_at: nil).order(posted_to_fb_at: :asc) }
+
   has_many :taggings, dependent: :destroy
   has_many :terms, through: :taggings
 
   after_commit :purge_from_cloudflare, on: [:create, :update]
+  after_commit :schedule_facebook_posting, on: [:create]
+
+  def self.last_posted_to_fb_at
+    posted_to_facebook.last.posted_to_fb_at
+  end
 
   def purge_urls
     urls = [link]
@@ -52,5 +60,15 @@ class Post < ActiveRecord::Base
 
   def should_purge?
     purged_at.nil? || purged_at < published_at || purged_at < modified_at
+  end
+
+  def should_post_to_facebook?
+    posted_to_fb_at.nil?
+  end
+
+  def schedule_facebook_posting
+    return unless should_post_to_facebook?
+    KpopnPostToFacebookJob.perform_later(self) if host == 'kpopn.com'
+    ApopnPostToFacebookJob.perform_later(self) if host == 'apopn.com'
   end
 end

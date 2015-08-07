@@ -2,16 +2,17 @@
 #
 # Table name: posts
 #
-#  id           :integer          not null, primary key
-#  title        :text             not null
-#  published_at :datetime         not null
-#  modified_at  :datetime         not null
-#  link         :string           not null
-#  excerpt      :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  purged_at    :datetime
-#  host         :string           not null
+#  id              :integer          not null, primary key
+#  title           :text             not null
+#  published_at    :datetime         not null
+#  modified_at     :datetime         not null
+#  link            :string           not null
+#  excerpt         :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  purged_at       :datetime
+#  host            :string           not null
+#  posted_to_fb_at :datetime
 #
 # Indexes
 #
