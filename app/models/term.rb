@@ -30,7 +30,7 @@ class Term < ActiveRecord::Base
   end
 
   def purge_urls
-    urls = [url, "#{url}page/2/", "#{url}page/3/", "#{url}?fb_ref=Default", "#{url}page/2/?fb_ref=Default", "#{url}page/3/?fb_ref=Default"]
+    [url, "#{url}page/2/", "#{url}page/3/", "#{url}?fb_ref=Default", "#{url}page/2/?fb_ref=Default", "#{url}page/3/?fb_ref=Default"]
   end
 
   def tax

@@ -40,7 +40,7 @@ class Post < ActiveRecord::Base
     urls = [link, "#{link}?fb_ref=Default"]
     urls << [next_post.link, "#{next_post.link}?fb_ref=Default"] if next_post
     urls << [prev_post.link, "#{prev_post.link}?fb_ref=Default"] if prev_post
-    urls
+    urls.flatten.uniq
   end
 
   def next_post

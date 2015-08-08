@@ -9,8 +9,6 @@ class CloudflarePurge
     return unless @record.should_purge?
     response = HTTParty.delete("https://api.cloudflare.com/client/v4/zones/#{zone_id}/purge_cache", headers: headers, body: body)
 
-    puts response.parsed_response
-
     return unless response.parsed_response['success']
     @record.purged_at = Time.zone.now
     @record.save!
