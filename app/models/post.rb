@@ -36,9 +36,9 @@ class Post < ActiveRecord::Base
   end
 
   def purge_urls
-    urls = [link]
-    urls << next_post.link if next_post
-    urls << prev_post.link if prev_post
+    urls = [link, "#{link}?fb_ref=Default"]
+    urls << [next_post.link, "#{next_post.link}?fb_ref=Default"] if next_post
+    urls << [prev_post.link, "#{prev_post.link}?fb_ref=Default"] if prev_post
     urls
   end
 
