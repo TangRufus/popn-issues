@@ -9,7 +9,7 @@ module Facebook
     end
 
     def post_to_page
-      if Post.last_posted_to_fb_at > 5.minutes.ago
+      if Post.last_posted_to_fb_at > 3.minutes.ago
         return KpopnPostToFacebookJob.set(wait: 1.minute).perform_later(@post)
       else
         super

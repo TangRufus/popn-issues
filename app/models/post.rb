@@ -32,6 +32,7 @@ class Post < ActiveRecord::Base
   after_commit :schedule_facebook_posting, on: [:create]
 
   def self.last_posted_to_fb_at
+    return 30.years.ago unless posted_to_facebook
     posted_to_facebook.last.posted_to_fb_at
   end
 
