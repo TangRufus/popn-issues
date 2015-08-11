@@ -1,7 +1,7 @@
 class KpopnPostToFacebookJob < ActiveJob::Base
   queue_as :low
 
-  def perform(post)
-    Facebook::Kpopn.new(post).post_to_page
+  def perform(post:)
+    Facebook::Kpopn.new(post: post).post_to_page
   end
 end

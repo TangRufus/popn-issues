@@ -8,11 +8,12 @@ module Facebook
     end
 
     def post_to_page
+      return if Post.last_posted_to_fb_at > 3.minutes.ago
       return unless @post.should_post_to_facebook?
 
-      @client.put_connections('me', 'feed', message: @message, link: @link)
-      @post.posted_to_fb_at = Time.zone.now
-      @post.save!
+      response = @client.put_connections('me', 'feed', message: @message, link: @link)
+
+      @post.update(posted_to_fb_at: Time.zone.now) if response['id']
     end
   end
 end

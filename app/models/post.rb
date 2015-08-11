@@ -23,17 +23,22 @@
 #
 
 class Post < ActiveRecord::Base
-  scope :posted_to_facebook, -> {where.not(posted_to_fb_at: nil).order(posted_to_fb_at: :asc) }
+  scope :posted_to_facebook, -> { where.not(posted_to_fb_at: nil).order(posted_to_fb_at: :asc) }
+  scope :facebook_queue, -> { where(posted_to_fb_at: nil).where('published_at >= ?', 3.hours.ago).order(published_at: :asc) }
 
   has_many :taggings, dependent: :destroy
   has_many :terms, through: :taggings
 
   after_commit :purge_from_cloudflare, on: [:create, :update]
-  after_commit :schedule_facebook_posting, on: [:create]
 
   def self.last_posted_to_fb_at
-    return 30.years.ago unless posted_to_facebook
+    return 30.years.ago if posted_to_facebook.empty?
     posted_to_facebook.last.posted_to_fb_at
+  end
+
+  def facebook_message
+    return  excerpt unless terms
+    "#{excerpt} \r\n\r\n#{hash_tags}"
   end
 
   def purge_urls
@@ -44,11 +49,11 @@ class Post < ActiveRecord::Base
   end
 
   def next_post
-    Post.where(host: host).where("published_at > ?", published_at).order(published_at: :desc).first
+    Post.where(host: host).where('published_at > ?', published_at).order(published_at: :desc).first
   end
 
   def prev_post
-    Post.where(host: host).where("published_at < ?", published_at).order(published_at: :asc).last
+    Post.where(host: host).where('published_at < ?', published_at).order(published_at: :asc).last
   end
 
   def purge_from_cloudflare
@@ -67,9 +72,12 @@ class Post < ActiveRecord::Base
     posted_to_fb_at.nil?
   end
 
-  def schedule_facebook_posting
-    return unless should_post_to_facebook?
-    KpopnPostToFacebookJob.perform_later(self) if host == 'kpopn.com'
-    ApopnPostToFacebookJob.perform_later(self) if host == 'apopn.com'
+  private
+
+  def hash_tags
+    tags = terms.collect do |term|
+      "##{term.name}"
+    end
+    tags.join(', ')
   end
 end

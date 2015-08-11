@@ -11,6 +11,7 @@
 #  father     :integer          not null
 #  url        :string
 #  purged_at  :datetime
+#  name       :string
 #
 # Indexes
 #

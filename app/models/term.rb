@@ -11,6 +11,7 @@
 #  father     :integer          not null
 #  url        :string
 #  purged_at  :datetime
+#  name       :string
 #
 # Indexes
 #
@@ -21,6 +22,10 @@ class Term < ActiveRecord::Base
   enum taxonomy: [:category, :post_tag, :post_format]
 
   after_commit :set_url, on: :create
+  after_commit :set_url, if: Proc.new { |record|
+    record.previous_changes.include?(:father) &&
+      record.previous_changes[:father].first != record.previous_changes[:father].last
+  }
 
   has_many :taggings, dependent: :destroy
   has_many :posts, through: :taggings
@@ -30,7 +35,9 @@ class Term < ActiveRecord::Base
   end
 
   def purge_urls
-    [url, "#{url}page/2/", "#{url}page/3/", "#{url}?fb_ref=Default", "#{url}page/2/?fb_ref=Default", "#{url}page/3/?fb_ref=Default"]
+    [url, "#{url}page/2/", "#{url}page/3/",
+      "#{url}?fb_ref=Default", "#{url}page/2/?fb_ref=Default", "#{url}page/3/?fb_ref=Default"
+    ]
   end
 
   def tax
@@ -40,7 +47,7 @@ class Term < ActiveRecord::Base
   end
 
   def set_url
-    SetTermUrlJob.perform_later(self)
+    SaveTermUrlJob.perform_later(self)
   end
 
   def should_purge?
