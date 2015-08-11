@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
   end
 
   def facebook_message
-    return  excerpt unless terms
+    return excerpt if terms.empty?
     "#{excerpt} \r\n\r\n#{hash_tags}"
   end
 
@@ -76,7 +76,8 @@ class Post < ActiveRecord::Base
 
   def hash_tags
     tags = terms.collect do |term|
-      "##{term.name}"
+      name = term.name.gsub(/[[:space:]|-]+/, '').gsub('/', '').gsub('／', '').gsub('，', '').gsub('！', '')
+      "##{name}"
     end
     tags.uniq.join(', ')
   end
