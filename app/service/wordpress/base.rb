@@ -38,7 +38,7 @@ module Wordpress
       posts.reverse_each do |p|
         post = save_post(p)
         terms = p['terms'].collect { |t| save_term(t) }
-        post.terms << terms
+        post.terms = terms.uniq
         post.save!
       end
     end

@@ -78,6 +78,6 @@ class Post < ActiveRecord::Base
     tags = terms.collect do |term|
       "##{term.name}"
     end
-    tags.join(', ')
+    tags.uniq.join(', ')
   end
 end
