@@ -76,7 +76,7 @@ class Post < ActiveRecord::Base
 
   def hash_tags
     tags = terms.collect do |term|
-      name = term.name.scan(/\p{Han}|\p{Katakana}|\p{Hiragana}\w/).join
+      name = term.name.scan(/\p{Han}|\p{Katakana}|\p{Hiragana}|\w/).join
       "##{name}"
     end
     tags.uniq.join(', ')
