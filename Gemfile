@@ -41,7 +41,7 @@ gem 'rubypress', '~> 1.1.0'
 gem 'httparty', '~> 0.13.5'
 
 # Facebook
-gem 'koala', '~> 2.0.0'
+gem 'koala', '~> 2.2.0'
 
 # Authentications
 gem 'devise', '~> 3.5.0'
@@ -80,7 +80,7 @@ group :development, :test do
   gem 'foreman', '~> 0.78.0'
   gem 'brakeman', '~> 3.0.2', require: false
   gem 'dawnscanner', '~> 1.3.1', require: false
-  gem 'rubocop', '~> 0.32.0', require: false
+  gem 'rubocop', '~> 0.33.0', require: false
 end
 
 ruby '2.2.2'
