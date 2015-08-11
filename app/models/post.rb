@@ -24,12 +24,17 @@
 
 class Post < ActiveRecord::Base
   scope :posted_to_facebook, -> { where.not(posted_to_fb_at: nil).order(posted_to_fb_at: :asc) }
-  scope :facebook_queue, -> { where(posted_to_fb_at: nil).where('published_at >= ?', 3.hours.ago).order(published_at: :asc) }
 
   has_many :taggings, dependent: :destroy
   has_many :terms, through: :taggings
 
   after_commit :purge_from_cloudflare, on: [:create, :update]
+
+  def self.facebook_queue
+    where(posted_to_fb_at: nil)
+      .where('published_at >= ? AND published_at < ?', 3.hours.ago, 10.minutes.ago)
+      .order(published_at: :asc)
+  end
 
   def self.last_posted_to_fb_at
     return 30.years.ago if posted_to_facebook.empty?
