@@ -31,8 +31,6 @@ gem 'rails_12factor', '~> 0.0.3'
 
 # Backgroud jobs
 gem 'sidekiq', '~> 3.4.0'
-### Temp fix
-gem 'celluloid', '= 0.16.0'
 # SideKiq web console
 gem 'sinatra', '~> 1.4.6', require: nil
 
